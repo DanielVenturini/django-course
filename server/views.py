@@ -29,13 +29,12 @@ def disk_usage_viewer(request: HttpRequest) -> HttpResponse:
 
     return render(request, 'default-response.html', {'context': context})
 
-#     return HttpResponse(
-#         output,
-#         headers={
-#             'Bypass': 'True',
-#             'Content-Type': 'text/html',
-#         }
-#     )
+def run_command_viewer(request: HttpRequest, command: str) -> HttpResponse:
+    import subprocess
 
+    context = {
+        'command': command,
+        'output': subprocess.getoutput(command + ' ' + request.GET.get('args')).split('\n')
+    }
 
-# def disk_usage_template_viewer(request: HttpRequest) -> HttpResponse:
+    return render(request, 'default-response.html', {'context': context})
