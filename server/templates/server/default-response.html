@@ -1,0 +1,6 @@
+<h1>Output of command: {{ context.command }}</h1>
+
+<br>
+{% for line in context.output %}
+    {{ line }} <br>
+{% endfor %}
