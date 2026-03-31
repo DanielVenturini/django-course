@@ -1,0 +1,27 @@
+{% extends 'base-users.html' %}
+
+{% block titleheader %}viewer{% endblock %}
+{% block titlebody %}viewer{% endblock %}
+
+{% block body %}
+
+	<table>
+		<tr>
+			<th>name</th>
+			<th>age</th>
+			<th>job</th>
+			<th>created_at</th>
+			<th>updated_at</th>
+		</tr>
+	{% for user in users %}
+		<tr>
+			<td>{{ user.name }}</td>
+			<td>{{ user.age }}</td>
+			<td>{{ user.job }}</td>
+			<td>{{ user.created_at }}</td>
+			<td>{{ user.updated_at }}</td>
+		</tr>
+	{% endfor %}
+	</table>
+
+{% endblock %}

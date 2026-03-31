@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Users web {% block titleheader %}{% endblock %}</title>
+		{% load static %}
+		<link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+	</head>
+
+	<body>
+		<h1>
+			Users web {% block titlebody %}{% endblock %}
+		</h1>
+		{% block body %}{% endblock %}
+		<br>
+		<footer>
+			Thanks for joining our systems today!
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,32 @@
+FROM python:3.12-alpine AS builder
+
+WORKDIR /app
+
+ENV PYTHON_DISABLE_PIP_VERSION_CHECK=1
+ENV PYTHON_NO_CACHE_DIR=1
+
+RUN python3 -m venv venv
+
+COPY requirements.txt .
+
+RUN /app/venv/bin/pip3 install --upgrade --retries 5 pip && \
+    /app/venv/bin/pip3 install --retries 5 -r requirements.txt
+
+FROM python:3.12-alpine AS final
+
+ENTRYPOINT ["/app/docker-entrypoint-migration.sh"]
+
+WORKDIR /app
+
+RUN adduser --uid 1001 --disabled-password migration --home /app
+
+COPY --chown=migration docker-entrypoint-migration.sh docker-entrypoint-migration.sh
+
+COPY --chown=migration application/ application/
+COPY --chown=migration static/ static/
+COPY --chown=migration users/ users/
+COPY --chown=migration manage.py manage.py
+
+COPY --from=builder --chown=migration /app/venv /app/venv
+
+USER migration

@@ -1,0 +1,42 @@
+services:
+  postgres:
+    image: postgres:18.3-alpine3.23
+    hostname: postgres-db-server
+    environment:
+      - POSTGRES_PASSWORD=rawpasswd
+    volumes:
+      - postgres_database:/var/lib/postgresql/
+
+  django_migration:
+    image: django-migration:0.0.1
+    build:
+      context: .
+      dockerfile: Dockerfile-migration
+    environment:
+      - PG_USER_NAME=postgres
+      - PG_USER_HOST=postgres-db-server
+      - PG_USER_PORT=5432
+      - PG_USER_USER=postgres
+      - PG_USER_PASSWORD=rawpasswd
+
+  django_app:
+    depends_on:
+     django_migration:
+        condition: service_completed_successfully
+    image: django-users:0.0.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    environment:
+      - PG_USER_NAME=postgres
+      - PG_USER_HOST=postgres-db-server
+      - PG_USER_PORT=5432
+      - PG_USER_USER=postgres
+      - PG_USER_PASSWORD=rawpasswd
+      - DEBUG=True
+
+volumes:
+  postgres_database:
+    external: true

@@ -1,0 +1,12 @@
+{% extends 'base-users.html' %}
+
+{% block titleheader %}creator{% endblock %}
+{% block titlebody %}creator{% endblock %}
+
+{% block body %}
+<form method="POST" action="{% url 'api_users_get_post_put_delete' %}">
+	{% csrf_token %}
+	{{ userForm.as_p }}
+	<button type="submit">Submit</button>
+</form>
+{% endblock %}
