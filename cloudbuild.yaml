@@ -16,7 +16,6 @@ steps:
       - docker
       - push
       - us-central1-docker.pkg.dev/$PROJECT_ID/django-app/django-app:${COMMIT_SHA}
-      - us-central1-docker.pkg.dev/$PROJECT_ID/django-app/django-app:latest
 
   - id: deploy-image
     name: gcr.io/google.com/cloudsdktool/cloud-sdk
