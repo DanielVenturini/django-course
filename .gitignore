@@ -1,2 +1,6 @@
 .venv
+terraform/.env
+terraform/terraform.tfstate*
+terraform/.terraform/
+.terraform*
 **/__pycache__/
