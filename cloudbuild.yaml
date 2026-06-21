@@ -1,6 +1,6 @@
 steps:
   - id: build-application
-    name: 'docker'
+    name: docker
     args:
       - docker
       - build
@@ -12,6 +12,19 @@ steps:
     waitFor:
       - '-'
 
+  - id: deploy-image
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - djangoapp
+      - --image
+      - us-central1-docker.pkg.dev/$PROJECT_ID/django-app/django-app:${COMMIT_SHA}
+      - --region
+      - us-central1
+      - --allow-unathenticated
+  
 images:
   - us-central1-docker.pkg.dev/$PROJECT_ID/django-app/django-app:${COMMIT_SHA}
   - us-central1-docker.pkg.dev/$PROJECT_ID/django-app/django-app:latest
