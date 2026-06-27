@@ -28,7 +28,7 @@ from os import environ
 
 DEBUG = environ.get('DEBUG') == 'True'
 
-ALLOWED_HOSTS = ['djangoapp-693607810326.us-central1.run.app' if not DEBUG else '*']
+ALLOWED_HOSTS = ['production-app-django-run-service-693607810326.us-central1.run.app' if not DEBUG else 'stage-app-django-run-service-693607810326.us-central1.run.app,*']
 
 
 # Application definition
