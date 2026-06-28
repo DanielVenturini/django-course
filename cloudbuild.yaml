@@ -52,13 +52,13 @@ options:
 
 availableSecrets:
   secretManager:
-    - versionName: projects/${_PROJECT_ID_NUMBER}/secrets/PG_USER_NAME/versions/1
+    - versionName: projects/${_PROJECT_ID_NUMBER}/secrets/PG_USER_NAME/versions/latest
       env: PG_USER_NAME
-    - versionName: projects/${_PROJECT_ID_NUMBER}/secrets/PG_USER_HOST/versions/1
+    - versionName: projects/${_PROJECT_ID_NUMBER}/secrets/PG_USER_HOST/versions/latest
       env: PG_USER_HOST
-    - versionName: projects/${_PROJECT_ID_NUMBER}/secrets/PG_USER_PORT/versions/1
+    - versionName: projects/${_PROJECT_ID_NUMBER}/secrets/PG_USER_PORT/versions/latest
       env: PG_USER_PORT
-    - versionName: projects/${_PROJECT_ID_NUMBER}/secrets/PG_USER_USER/versions/1
+    - versionName: projects/${_PROJECT_ID_NUMBER}/secrets/PG_USER_USER/versions/latest
       env: PG_USER_USER
-    - versionName: projects/${_PROJECT_ID_NUMBER}/secrets/PG_USER_PASSWORD/versions/1
+    - versionName: projects/${_PROJECT_ID_NUMBER}/secrets/PG_USER_PASSWORD/versions/latest
       env: PG_USER_PASSWORD
