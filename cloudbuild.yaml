@@ -24,11 +24,11 @@ steps:
       - manage.py
       - migrate
     env:
-      - PG_USER_NAME=${_PG_USER_NAME}
-      - PG_USER_HOST=${_PG_USER_HOST}
-      - PG_USER_PORT=${_PG_USER_PORT}
-      - PG_USER_USER=${_PG_USER_USER}
-      - PG_USER_PASSWORD=${_PG_USER_PASSWORD}
+      - PG_USER_NAME=$_PG_USER_NAME
+      - PG_USER_HOST=$_PG_USER_HOST
+      - PG_USER_PORT=$_PG_USER_PORT
+      - PG_USER_USER=$_PG_USER_USER
+      - PG_USER_PASSWORD=$_PG_USER_PASSWORD
 
   - id: deploy-image
     name: gcr.io/google.com/cloudsdktool/cloud-sdk
