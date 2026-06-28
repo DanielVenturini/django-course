@@ -24,11 +24,11 @@ steps:
       - manage.py
       - migrate
     secretEnv:
-      - $PG_USER_NAME
-      - $PG_USER_HOST
-      - $PG_USER_PORT
-      - $PG_USER_USER
-      - $PG_USER_PASSWORD
+      - PG_USER_NAME
+      - PG_USER_HOST
+      - PG_USER_PORT
+      - PG_USER_USER
+      - PG_USER_PASSWORD
 
   - id: deploy-image
     name: gcr.io/google.com/cloudsdktool/cloud-sdk
