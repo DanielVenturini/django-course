@@ -23,13 +23,13 @@ steps:
     args:
       - run
       - deploy
-      - djangoapp
+      - ${_ENVIRONMENT}-app-django-run-service
       - --image
       - us-central1-docker.pkg.dev/$PROJECT_ID/django-app/django-app:${COMMIT_SHA}
       - --region
       - us-central1
       - --allow-unauthenticated
-  
+
 images:
   - us-central1-docker.pkg.dev/$PROJECT_ID/django-app/django-app:${COMMIT_SHA}
   - us-central1-docker.pkg.dev/$PROJECT_ID/django-app/django-app:latest
