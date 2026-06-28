@@ -17,6 +17,13 @@ steps:
       - push
       - us-central1-docker.pkg.dev/$PROJECT_ID/django-app/django-app:${COMMIT_SHA}
 
+  - id: perform-migration
+    name: us-central1-docker.pkg.dev/$PROJECT_ID/django-app/django-app:${COMMIT_SHA}
+    entrypoint: python3
+    args:
+      - manage.py
+      - migrate
+
   - id: deploy-image
     name: gcr.io/google.com/cloudsdktool/cloud-sdk
     entrypoint: gcloud
@@ -36,3 +43,16 @@ images:
 
 options:
   logging: CLOUD_LOGGING_ONLY
+
+availableSecrets:
+  secretManager:
+    - versionName: projects/${_PROJECT_ID_NUMBER}/secrets/PG_USER_NAME/versions/1
+      env: PG_USER_NAME
+    - versionName: projects/${_PROJECT_ID_NUMBER}/secrets/PG_USER_HOST/versions/1
+      env: PG_USER_HOST
+    - versionName: projects/${_PROJECT_ID_NUMBER}/secrets/PG_USER_PORT/versions/1
+      env: PG_USER_PORT
+    - versionName: projects/${_PROJECT_ID_NUMBER}/secrets/PG_USER_USER/versions/1
+      env: PG_USER_USER
+    - versionName: projects/${_PROJECT_ID_NUMBER}/secrets/PG_USER_PASSWORD/versions/1
+      env: PG_USER_PASSWORD

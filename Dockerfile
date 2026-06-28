@@ -27,6 +27,7 @@ COPY --chown=gunicorn docker-entrypoint.sh docker-entrypoint.sh
 COPY --chown=gunicorn application/ application/
 COPY --chown=gunicorn static/ static/
 COPY --chown=gunicorn users/ users/
+COPY --chown=gunicorn manage.py manage.py
 
 COPY --from=builder --chown=gunicorn /app/venv /app/venv
 
