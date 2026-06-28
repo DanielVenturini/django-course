@@ -42,6 +42,11 @@ steps:
       - --region
       - us-central1
       - --allow-unauthenticated
+      - --set-secrets=PG_USER_NAME=PG_USER_NAME:latest
+      - --set-secrets=PG_USER_HOST=PG_USER_HOST:latest
+      - --set-secrets=PG_USER_PORT=PG_USER_PORT:latest
+      - --set-secrets=PG_USER_USER=PG_USER_USER:latest
+      - --set-secrets=PG_USER_PASSWORD=PG_USER_PASSWORD:latest
 
 images:
   - us-central1-docker.pkg.dev/$PROJECT_ID/django-app/django-app:${COMMIT_SHA}
