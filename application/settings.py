@@ -26,9 +26,10 @@ SECRET_KEY = 'django-insecure-sw+1@a)d7jx5i_3)8^)09j)z+8v(!mabpo+vgedx!ddwue-(ra
 # SECURITY WARNING: don't run with debug turned on in production!
 from os import environ
 
-DEBUG = environ.get('DEBUG') == 'True'
-
-ALLOWED_HOSTS = ['production-app-django-run-service-693607810326.us-central1.run.app,stage-app-django-run-service-693607810326.us-central1.run.app' if not DEBUG else '*']
+if environ.get('DEBUG') != 'True':
+    ALLOWED_HOSTS = ["${environ.get('ENVIRONMENT')}-app-django-run-service-${environ.get('PROJECT_ID_NUMBER')}.${environ.get('REGION')}.run.app"]
+else:
+    ALLOWED_HOSTS = ['*']
 
 
 # Application definition
